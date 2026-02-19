@@ -1,0 +1,36 @@
+id: arcgis_zoning_overlays
+source_type: arcgis
+target_table: zoning_overlays
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Zoning_2/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+filters:
+  where: "1=1"
+  outFields: "*"
+layers:
+  - id: 0
+    name: "Base Zoning"
+  - id: 1
+    name: "Conditional Overlay"
+  - id: 2
+    name: "Combined Neighborhood Planning"
+  - id: 3
+    name: "Neighborhood Planning Area"
+field_map:
+  - raw_field: ZONEDESC
+    schema_field: overlay_name
+    type: text
+  - raw_field: ZONING
+    schema_field: overlay_type
+    type: text
+  - raw_field: _layer_name
+    schema_field: layer_name
+    type: text
+  - raw_field: _layer_id
+    schema_field: layer_id
+    type: integer
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

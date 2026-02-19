@@ -1,0 +1,38 @@
+id: austin_zoning_cases
+source_type: socrata
+target_table: zoning_cases
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: edir-dcnf
+license: Public Domain
+refresh_cadence: daily
+filters: {}
+field_map:
+  - raw_field: case_number
+    schema_field: case_number
+    type: text
+    required: true
+  - raw_field: case_name
+    schema_field: case_name
+    type: text
+  - raw_field: address
+    schema_field: address
+    type: text
+  - raw_field: existing_zoning
+    schema_field: existing_zoning
+    type: text
+  - raw_field: proposed_zoning
+    schema_field: proposed_zoning
+    type: text
+  - raw_field: status
+    schema_field: status
+    type: text
+  - raw_field: filed_date
+    schema_field: filed_date
+    type: date
+  - raw_field: council_district
+    schema_field: council_district
+    type: text
+  - raw_field: description
+    schema_field: description
+    type: text

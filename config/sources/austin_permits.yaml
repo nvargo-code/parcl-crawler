@@ -1,0 +1,59 @@
+id: austin_permits
+source_type: socrata
+target_table: permits
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: 3syk-w9eu
+license: Public Domain
+refresh_cadence: daily
+filters: {}
+field_map:
+  - raw_field: permit_number
+    schema_field: permit_number
+    type: text
+    required: true
+  - raw_field: permit_type_desc
+    schema_field: permit_type
+    type: text
+  - raw_field: permit_class_mapped
+    schema_field: permit_class
+    type: text
+  - raw_field: work_class
+    schema_field: work_class
+    type: text
+  - raw_field: status_current
+    schema_field: status
+    type: text
+  - raw_field: description
+    schema_field: description
+    type: text
+  - raw_field: original_address1
+    schema_field: address
+    type: text
+  - raw_field: applicant_full_name
+    schema_field: applicant
+    type: text
+  - raw_field: contractor_company_name
+    schema_field: contractor
+    type: text
+  - raw_field: total_job_valuation
+    schema_field: valuation
+    type: float
+  - raw_field: issued_date
+    schema_field: issued_date
+    type: date
+  - raw_field: filed_date
+    schema_field: filed_date
+    type: date
+  - raw_field: completed_date
+    schema_field: completed_date
+    type: date
+  - raw_field: expires_date
+    schema_field: expired_date
+    type: date
+  - raw_field: latitude
+    schema_field: latitude
+    type: float
+  - raw_field: longitude
+    schema_field: longitude
+    type: float

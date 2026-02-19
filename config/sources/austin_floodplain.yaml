@@ -1,0 +1,22 @@
+id: austin_floodplain
+source_type: socrata
+target_table: environmental_constraints
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: 2xn4-j3u2
+license: Public Domain
+refresh_cadence: monthly
+filters: {}
+field_map:
+  - raw_field: floodplain_name
+    schema_field: name
+    type: text
+  - raw_field: description
+    schema_field: description
+    type: text
+  - raw_field: latitude
+    schema_field: latitude
+    type: float
+  - raw_field: longitude
+    schema_field: longitude
+    type: float

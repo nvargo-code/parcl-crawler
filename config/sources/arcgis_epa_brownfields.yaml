@@ -1,0 +1,33 @@
+id: arcgis_epa_brownfields
+source_type: arcgis
+target_table: environmental_constraints
+jurisdiction_id: austin-tx
+base_url: https://geodata.epa.gov/arcgis/rest/services/OEI/FRS_INTERESTS/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: quarterly
+filters:
+  where: "STATE_CODE = 'TX' AND COUNTY_NAME = 'TRAVIS'"
+  outFields: "*"
+layers:
+  - id: 0
+    name: "EPA Brownfields ACRES"
+field_map:
+  - raw_field: PRIMARY_NAME
+    schema_field: name
+    type: text
+  - raw_field: LOCATION_ADDRESS
+    schema_field: address
+    type: text
+  - raw_field: INTEREST_TYPE
+    schema_field: description
+    type: text
+  - raw_field: LATITUDE83
+    schema_field: latitude
+    type: float
+  - raw_field: LONGITUDE83
+    schema_field: longitude
+    type: float
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

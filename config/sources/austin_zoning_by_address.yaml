@@ -1,0 +1,29 @@
+id: austin_zoning_by_address
+source_type: socrata
+target_table: parcels
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: nbzi-qabm
+license: Public Domain
+refresh_cadence: daily
+filters: {}
+field_map:
+  - raw_field: address
+    schema_field: address
+    type: text
+    required: true
+  - raw_field: base_zone
+    schema_field: base_zoning
+    type: text
+  - raw_field: zoning_description
+    schema_field: zoning_desc
+    type: text
+  - raw_field: city
+    schema_field: city
+    type: text
+  - raw_field: county
+    schema_field: county
+    type: text
+  - raw_field: zipcode
+    schema_field: zip_code
+    type: text

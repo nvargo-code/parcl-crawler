@@ -1,0 +1,23 @@
+id: austin_water_treated
+source_type: socrata
+target_table: utility_capacity
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: xtim-9ehs
+license: Public Domain
+refresh_cadence: daily
+filters: {}
+field_map:
+  - raw_field: plant_name
+    schema_field: facility_name
+    type: text
+    required: true
+  - raw_field: month
+    schema_field: period_start
+    type: date
+  - raw_field: treated_million_gallons
+    schema_field: metric_value
+    type: float
+  - raw_field: year
+    schema_field: metric_name
+    type: text

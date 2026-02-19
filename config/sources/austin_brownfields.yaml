@@ -1,0 +1,26 @@
+id: austin_brownfields
+source_type: socrata
+target_table: environmental_constraints
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: 22wq-47zy
+license: Public Domain
+refresh_cadence: as_needed
+filters: {}
+field_map:
+  - raw_field: site_name
+    schema_field: name
+    type: text
+    required: true
+  - raw_field: address
+    schema_field: address
+    type: text
+  - raw_field: description
+    schema_field: description
+    type: text
+  - raw_field: latitude
+    schema_field: latitude
+    type: float
+  - raw_field: longitude
+    schema_field: longitude
+    type: float

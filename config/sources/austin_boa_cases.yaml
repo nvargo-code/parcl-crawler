@@ -1,0 +1,35 @@
+id: austin_boa_cases
+source_type: socrata
+target_table: boa_cases
+jurisdiction_id: austin-tx
+base_url: https://data.austintexas.gov
+dataset_id: ykxk-t5y9
+license: Public Domain
+refresh_cadence: daily
+filters: {}
+field_map:
+  - raw_field: case_number
+    schema_field: case_number
+    type: text
+    required: true
+  - raw_field: address
+    schema_field: address
+    type: text
+  - raw_field: variance_type
+    schema_field: variance_type
+    type: text
+  - raw_field: status
+    schema_field: status
+    type: text
+  - raw_field: filed_date
+    schema_field: filed_date
+    type: date
+  - raw_field: hearing_date
+    schema_field: hearing_date
+    type: date
+  - raw_field: decision
+    schema_field: decision
+    type: text
+  - raw_field: description
+    schema_field: description
+    type: text

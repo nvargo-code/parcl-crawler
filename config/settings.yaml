@@ -1,0 +1,21 @@
+database:
+  type: duckdb                    # duckdb or postgresql
+  duckdb_path: data/parcl.duckdb
+  # postgres_url: postgresql://user:pass@host:5432/parcl
+
+logging:
+  level: INFO                     # DEBUG, INFO, WARNING, ERROR
+  format: structured              # structured or simple
+
+crawler:
+  rate_limit_seconds: 0.5         # Delay between API requests
+  page_size: 1000                 # Records per page (Socrata/ArcGIS)
+  max_pages: 500                  # Safety limit per source run
+  timeout_seconds: 60             # HTTP request timeout
+  max_retries: 3                  # Retry count on failure
+  retry_backoff: 2.0              # Exponential backoff multiplier
+
+sources_dir: config/sources       # Directory with source YAML files
+
+export:
+  output_dir: data/exports        # Default export directory
