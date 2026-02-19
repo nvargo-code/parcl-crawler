@@ -32,7 +32,7 @@ def coerce_value(value: Any, target_type: str) -> Any:
             s = str(value).strip()
             # Try ISO format first
             for fmt in ("%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d",
-                        "%m/%d/%Y", "%m-%d-%Y"):
+                        "%m/%d/%Y", "%m-%d-%Y", "%Y-%b-%d"):
                 try:
                     return datetime.strptime(s[:26], fmt).date()
                 except ValueError:
@@ -58,7 +58,13 @@ def transform_record(
     mapped: dict[str, Any] = {}
 
     for fm in source_config.field_map:
-        raw_val = raw.get(fm.raw_field)
+        if fm.template:
+            try:
+                raw_val = fm.template.format(**raw)
+            except KeyError:
+                raw_val = None
+        else:
+            raw_val = raw.get(fm.raw_field)
         if fm.required and (raw_val is None or raw_val == ""):
             return None
         mapped[fm.schema_field] = coerce_value(raw_val, fm.type)
@@ -68,12 +74,18 @@ def transform_record(
     mapped["source_id"] = source_config.id
     mapped["jurisdiction_id"] = source_config.jurisdiction_id
 
-    # Generate external_id from first required field or hash of record
+    # Generate external_id from template, first required field, or hash of record
     external_id = None
-    for fm in source_config.field_map:
-        if fm.required and mapped.get(fm.schema_field):
-            external_id = str(mapped[fm.schema_field])
-            break
+    if source_config.external_id_template:
+        try:
+            external_id = source_config.external_id_template.format(**raw)
+        except KeyError:
+            pass
+    if not external_id:
+        for fm in source_config.field_map:
+            if fm.required and mapped.get(fm.schema_field):
+                external_id = str(mapped[fm.schema_field])
+                break
     if not external_id:
         # Fallback: use a hash of the raw record
         external_id = str(uuid.uuid5(uuid.NAMESPACE_URL, json.dumps(raw, sort_keys=True, default=str)))

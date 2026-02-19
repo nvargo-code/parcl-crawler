@@ -8,28 +8,22 @@ license: Public Domain
 refresh_cadence: daily
 filters: {}
 field_map:
-  - raw_field: case_number
+  - raw_field: permit_number
     schema_field: case_number
     type: text
     required: true
-  - raw_field: address
-    schema_field: address
-    type: text
-  - raw_field: variance_type
+  - raw_field: case_type
     schema_field: variance_type
     type: text
-  - raw_field: status
+  - raw_field: status_current
     schema_field: status
     type: text
-  - raw_field: filed_date
+  - raw_field: status_date
     schema_field: filed_date
     type: date
-  - raw_field: hearing_date
-    schema_field: hearing_date
-    type: date
-  - raw_field: decision
+  - raw_field: status_current
     schema_field: decision
     type: text
-  - raw_field: description
+  - raw_field: project_name
     schema_field: description
     type: text

@@ -45,6 +45,7 @@ class FieldMapping:
     schema_field: str
     type: str = "text"
     required: bool = False
+    template: str | None = None  # e.g. "{year}-{month}-01" to combine multiple raw fields
 
 
 @dataclass
@@ -57,6 +58,7 @@ class SourceConfig:
     dataset_id: str = ""
     license: str = ""
     refresh_cadence: str = ""
+    external_id_template: str | None = None  # e.g. "{plant}_{year}_{month}"
     filters: dict[str, Any] = field(default_factory=dict)
     field_map: list[FieldMapping] = field(default_factory=list)
     layers: list[dict[str, Any]] | None = None

@@ -6,16 +6,18 @@ base_url: https://data.austintexas.gov
 dataset_id: vuwy-s6qv
 license: Public Domain
 refresh_cadence: daily
+external_id_template: "{plant}_{year}_{month}"
 filters: {}
 field_map:
-  - raw_field: plant_name
+  - raw_field: plant
     schema_field: facility_name
     type: text
     required: true
   - raw_field: month
     schema_field: period_start
     type: date
-  - raw_field: treated_million_gallons
+    template: "{year}-{month}-01"
+  - raw_field: mg_treated
     schema_field: metric_value
     type: float
   - raw_field: year

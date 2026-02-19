@@ -8,22 +8,13 @@ license: Public Domain
 refresh_cadence: daily
 filters: {}
 field_map:
-  - raw_field: address
+  - raw_field: full_street_name
     schema_field: address
     type: text
     required: true
   - raw_field: base_zone
     schema_field: base_zoning
     type: text
-  - raw_field: zoning_description
+  - raw_field: zoning_ztype
     schema_field: zoning_desc
-    type: text
-  - raw_field: city
-    schema_field: city
-    type: text
-  - raw_field: county
-    schema_field: county
-    type: text
-  - raw_field: zipcode
-    schema_field: zip_code
     type: text
