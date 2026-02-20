@@ -8,19 +8,13 @@ license: Public Domain
 refresh_cadence: as_needed
 filters: {}
 field_map:
-  - raw_field: site_name
+  - raw_field: site_identification
     schema_field: name
     type: text
     required: true
-  - raw_field: address
-    schema_field: address
-    type: text
-  - raw_field: description
+  - raw_field: proposed_redevelopment
     schema_field: description
     type: text
-  - raw_field: latitude
-    schema_field: latitude
-    type: float
-  - raw_field: longitude
-    schema_field: longitude
-    type: float
+  - raw_field: status
+    schema_field: severity
+    type: text
