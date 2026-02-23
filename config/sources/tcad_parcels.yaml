@@ -1,0 +1,54 @@
+id: tcad_parcels
+source_type: arcgis
+target_table: property_valuations
+jurisdiction_id: austin-tx
+base_url: https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD_public/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+external_id_template: "{PROP_ID}"
+filters:
+  where: "situs_city = 'AUSTIN'"
+  outFields: "PROP_ID,geo_id,situs_address,situs_city,situs_zip,sub_dec,entities,tcad_acres,legal_desc,CENTROID_X,CENTROID_Y"
+layers:
+  - id: 0
+    name: "TCAD Parcels"
+field_map:
+  - raw_field: PROP_ID
+    schema_field: prop_id
+    type: text
+    required: true
+  - raw_field: geo_id
+    schema_field: geo_id
+    type: text
+  - raw_field: situs_address
+    schema_field: address
+    type: text
+  - raw_field: situs_city
+    schema_field: city
+    type: text
+  - raw_field: situs_zip
+    schema_field: zip_code
+    type: text
+  - raw_field: sub_dec
+    schema_field: subdivision
+    type: text
+  - raw_field: entities
+    schema_field: entities
+    type: text
+  - raw_field: tcad_acres
+    schema_field: acreage
+    type: float
+  - raw_field: legal_desc
+    schema_field: legal_description
+    type: text
+  - raw_field: CENTROID_X
+    schema_field: longitude
+    type: float
+  - raw_field: CENTROID_Y
+    schema_field: latitude
+    type: float
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text
+# NOTE: ~200K+ records. Full run may take 10-20 min.

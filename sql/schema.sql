@@ -182,6 +182,58 @@ CREATE TABLE IF NOT EXISTS rights_restrictions (
     grantee         TEXT,
     recorded_date   DATE,
     description     TEXT,
+    geometry_wkt    TEXT,
+    jurisdiction_id TEXT REFERENCES jurisdictions(id),
+    raw_payload     {JSON_TYPE},
+    fetched_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(source_id, external_id)
+);
+
+ALTER TABLE rights_restrictions ADD COLUMN IF NOT EXISTS geometry_wkt TEXT;
+
+CREATE TABLE IF NOT EXISTS property_valuations (
+    id                TEXT PRIMARY KEY,
+    source_id         TEXT NOT NULL REFERENCES sources(id),
+    external_id       TEXT NOT NULL,
+    prop_id           TEXT,
+    geo_id            TEXT,
+    address           TEXT,
+    address_norm      TEXT,
+    city              TEXT,
+    zip_code          TEXT,
+    subdivision       TEXT,
+    entities          TEXT,
+    acreage           DOUBLE,
+    legal_description TEXT,
+    appraised_value   DOUBLE,
+    land_value        DOUBLE,
+    improvement_value DOUBLE,
+    tax_year          INTEGER,
+    geometry_wkt      TEXT,
+    jurisdiction_id   TEXT REFERENCES jurisdictions(id),
+    raw_payload       {JSON_TYPE},
+    fetched_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(source_id, external_id)
+);
+
+CREATE TABLE IF NOT EXISTS transit_amenities (
+    id              TEXT PRIMARY KEY,
+    source_id       TEXT NOT NULL REFERENCES sources(id),
+    external_id     TEXT NOT NULL,
+    amenity_type    TEXT NOT NULL,  -- park, bus_stop, bus_route, rail_route, city_land, other
+    name            TEXT,
+    description     TEXT,
+    address         TEXT,
+    address_norm    TEXT,
+    stop_id         TEXT,
+    route_id        TEXT,
+    route_type      TEXT,
+    park_type       TEXT,
+    acreage         DOUBLE,
+    latitude        DOUBLE,
+    longitude       DOUBLE,
+    geometry_wkt    TEXT,
+    properties      {JSON_TYPE},
     jurisdiction_id TEXT REFERENCES jurisdictions(id),
     raw_payload     {JSON_TYPE},
     fetched_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

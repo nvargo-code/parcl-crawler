@@ -1,4 +1,4 @@
-id: arcgis_water_service
+id: arcgis_water_muds
 source_type: arcgis
 target_table: utility_capacity
 jurisdiction_id: austin-tx
@@ -8,16 +8,23 @@ license: Public Domain
 refresh_cadence: monthly
 filters:
   where: "1=1"
-  outFields: "*"
+  outFields: "CUSTNAME,CUSTTYPE,STATUS,PROVIDING,WCCN,WWCCN"
 layers:
-  - id: 3
-    name: "Austin Water Service Area"
+  - id: 0
+    name: "Regional Utilities MUDs"
 field_map:
-  - raw_field: _layer_name
+  - raw_field: CUSTNAME
     schema_field: facility_name
     type: text
-  - raw_field: _layer_name
+    required: true
+  - raw_field: CUSTTYPE
     schema_field: metric_name
+    type: text
+  - raw_field: STATUS
+    schema_field: metric_unit
+    type: text
+  - raw_field: PROVIDING
+    schema_field: description
     type: text
   - raw_field: _geometry_wkt
     schema_field: geometry_wkt

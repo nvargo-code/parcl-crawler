@@ -1,0 +1,31 @@
+id: arcgis_parks_travis
+source_type: arcgis
+target_table: transit_amenities
+jurisdiction_id: us-tx-travis
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Infrastructure_2/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: monthly
+filters:
+  where: "1=1"
+  outFields: "NAME,FIRST_PARKTYPE,SUM_PARK_ACRES,FIRST_AGENCYNAME"
+layers:
+  - id: 1
+    name: "Travis County Parks"
+field_map:
+  - raw_field: NAME
+    schema_field: name
+    type: text
+    required: true
+  - raw_field: FIRST_PARKTYPE
+    schema_field: park_type
+    type: text
+  - raw_field: SUM_PARK_ACRES
+    schema_field: acreage
+    type: float
+  - raw_field: FIRST_AGENCYNAME
+    schema_field: description
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

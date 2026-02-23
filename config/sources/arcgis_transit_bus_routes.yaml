@@ -1,0 +1,32 @@
+id: arcgis_transit_bus_routes
+source_type: arcgis
+target_table: transit_amenities
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Transportation_1/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+external_id_template: "{ROUTE_ID}"
+filters:
+  where: "1=1"
+  outFields: "ROUTE_ID,ROUTENAME,ROUTETYPE,SERVICENM"
+layers:
+  - id: 4
+    name: "Capital Metro Bus Routes"
+field_map:
+  - raw_field: ROUTE_ID
+    schema_field: route_id
+    type: text
+    required: true
+  - raw_field: ROUTENAME
+    schema_field: name
+    type: text
+  - raw_field: ROUTETYPE
+    schema_field: route_type
+    type: text
+  - raw_field: SERVICENM
+    schema_field: description
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

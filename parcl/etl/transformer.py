@@ -101,25 +101,52 @@ def transform_record(
     # Add constraint_type / utility_type defaults based on source
     table = source_config.target_table
     if table == "environmental_constraints" and "constraint_type" not in mapped:
-        if "flood" in source_config.id.lower():
+        sid = source_config.id.lower()
+        if "flood" in sid:
             mapped["constraint_type"] = "flood_zone"
             mapped["severity"] = "high"
-        elif "brownfield" in source_config.id.lower():
+        elif "brownfield" in sid:
             mapped["constraint_type"] = "brownfield"
             mapped["severity"] = "medium"
+        elif "tceq" in sid or "lpst" in sid or "hazmat" in sid:
+            mapped["constraint_type"] = "hazmat"
+            mapped["severity"] = "high"
+        elif "city_owned" in sid or "city_land" in sid:
+            mapped["constraint_type"] = "city_land"
+            mapped["severity"] = "low"
         else:
             mapped["constraint_type"] = "other"
             mapped["severity"] = "low"
 
     if table == "utility_capacity" and "utility_type" not in mapped:
-        if "water" in source_config.id.lower() and "waste" not in source_config.id.lower():
-            mapped["utility_type"] = "water"
-            mapped["metric_unit"] = "million_gallons"
-        elif "wastewater" in source_config.id.lower():
+        sid = source_config.id.lower()
+        if "wastewater" in sid:
             mapped["utility_type"] = "wastewater"
             mapped["metric_unit"] = "million_gallons"
+        elif "water" in sid:
+            mapped["utility_type"] = "water"
+            mapped["metric_unit"] = "million_gallons"
+        elif "energy" in sid or "electric" in sid:
+            mapped["utility_type"] = "electric"
+        elif "mud" in sid or "impact_fee" in sid:
+            mapped["utility_type"] = "water"
         else:
             mapped["utility_type"] = "other"
+
+    if table == "transit_amenities" and "amenity_type" not in mapped:
+        sid = source_config.id.lower()
+        if "park" in sid:
+            mapped["amenity_type"] = "park"
+        elif "bus_route" in sid or "rapid_route" in sid:
+            mapped["amenity_type"] = "bus_route"
+        elif "bus_stop" in sid or "rapid_stop" in sid or "stop" in sid:
+            mapped["amenity_type"] = "bus_stop"
+        elif "rail" in sid:
+            mapped["amenity_type"] = "rail_route"
+        elif "city_land" in sid or "owned" in sid:
+            mapped["amenity_type"] = "city_land"
+        else:
+            mapped["amenity_type"] = "other"
 
     return mapped
 

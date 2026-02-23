@@ -1,0 +1,35 @@
+id: arcgis_parks_austin
+source_type: arcgis
+target_table: transit_amenities
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Infrastructure_2/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: monthly
+external_id_template: "{ASSET_MGMT_ID}"
+filters:
+  where: "ASSET_STATUS = 'Open'"
+  outFields: "ASSET_MGMT_ID,LOCATION_NAME,PARK_TYPE,ASSET_SIZE,OWNER_NAME"
+layers:
+  - id: 0
+    name: "City of Austin Parks"
+field_map:
+  - raw_field: ASSET_MGMT_ID
+    schema_field: stop_id
+    type: text
+    required: true
+  - raw_field: LOCATION_NAME
+    schema_field: name
+    type: text
+  - raw_field: PARK_TYPE
+    schema_field: park_type
+    type: text
+  - raw_field: ASSET_SIZE
+    schema_field: acreage
+    type: float
+  - raw_field: OWNER_NAME
+    schema_field: description
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

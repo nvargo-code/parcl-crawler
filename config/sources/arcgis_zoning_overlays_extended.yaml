@@ -1,0 +1,78 @@
+id: arcgis_zoning_overlays_extended
+source_type: arcgis
+target_table: zoning_overlays
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Zoning_2/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+filters:
+  where: "1=1"
+  outFields: "*"
+layers:
+  - id: 1
+    name: "ADU Approx Area Reduced Parking"
+  - id: 2
+    name: "Barton Springs Zone"
+  - id: 3
+    name: "Capitol Dominance Overlay"
+  - id: 4
+    name: "Capitol View Corridors"
+  - id: 5
+    name: "Central Urban Renewal"
+  - id: 6
+    name: "Congress Avenue"
+  - id: 7
+    name: "Convention Center"
+  - id: 8
+    name: "Criminal Justice Center Overlay"
+  - id: 9
+    name: "Downtown Austin Plan Districts"
+  - id: 10
+    name: "Downtown Creeks"
+  - id: 11
+    name: "Downtown Density Bonus"
+  - id: 12
+    name: "Downtown Parks"
+  - id: 13
+    name: "East 6th Pecan St"
+  - id: 15
+    name: "Green Building Mandatory"
+  - id: 16
+    name: "Hazardous Pipelines Overlay"
+  - id: 17
+    name: "Hill Country Roadways Overlay"
+  - id: 18
+    name: "Lake Austin Overlay"
+  - id: 19
+    name: "Neighborhood Conservation Combining District"
+  - id: 21
+    name: "Regulating Plan Subdistrict"
+  - id: 22
+    name: "Residential Design Standards"
+  - id: 23
+    name: "Scenic Roadways Overlay"
+  - id: 25
+    name: "Selected Sound Ordinances"
+  - id: 27
+    name: "Urban Renewal Overlay"
+  - id: 28
+    name: "Waterfront Setbacks Overlay"
+  - id: 30
+    name: "West Campus Neighborhood Overlay"
+field_map:
+  - raw_field: ZONING_OVERLAY_SUB_NAME
+    schema_field: overlay_name
+    type: text
+  - raw_field: _layer_name
+    schema_field: overlay_type
+    type: text
+  - raw_field: _layer_name
+    schema_field: layer_name
+    type: text
+  - raw_field: _layer_id
+    schema_field: layer_id
+    type: integer
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

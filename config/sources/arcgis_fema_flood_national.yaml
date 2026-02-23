@@ -1,0 +1,31 @@
+id: arcgis_fema_flood_national
+source_type: arcgis
+target_table: environmental_constraints
+jurisdiction_id: austin-tx
+base_url: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: quarterly
+filters:
+  where: "DFIRM_ID LIKE '48453%'"
+  outFields: "FLD_ZONE,ZONE_SUBTY,SFHA_TF,STUDY_TYP,DFIRM_ID"
+layers:
+  - id: 0
+    name: "FEMA National Flood Hazard"
+field_map:
+  - raw_field: FLD_ZONE
+    schema_field: name
+    type: text
+    required: true
+  - raw_field: ZONE_SUBTY
+    schema_field: description
+    type: text
+  - raw_field: SFHA_TF
+    schema_field: severity
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text
+# NOTE: Verify STATE and COUNTY field names exist in this layer before running.
+# If not, switch where clause to a bounding box envelope filter.
+# If the layer uses STATE_CODE/COUNTY_NAME, update the where clause accordingly.

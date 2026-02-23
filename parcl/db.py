@@ -62,7 +62,7 @@ class Database:
             "sources", "jurisdictions", "parcels", "permits",
             "zoning_cases", "boa_cases", "zoning_overlays",
             "utility_capacity", "environmental_constraints",
-            "rights_restrictions",
+            "rights_restrictions", "property_valuations", "transit_amenities",
         ]
         counts = {}
         for t in tables:

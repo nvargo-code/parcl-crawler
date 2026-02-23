@@ -1,4 +1,4 @@
-id: arcgis_zoning_infill
+id: arcgis_zoning_infill_extended
 source_type: arcgis
 target_table: zoning_overlays
 jurisdiction_id: austin-tx
@@ -10,22 +10,12 @@ filters:
   where: "1=1"
   outFields: "*"
 layers:
-  - id: 0
-    name: "Mixed Use Building Infill"
-  - id: 1
-    name: "Neighborhood Urban Center Infill"
-  - id: 2
-    name: "Residential Infill"
-  - id: 3
-    name: "Urban Home Infill"
-  - id: 4
-    name: "Secondary Apartment Infill"
-  - id: 5
-    name: "Small Lot Amnesty Infill"
-  - id: 6
-    name: "Cottage Lot Infill"
-  - id: 7
-    name: "Corner Store Infill"
+  - id: 8
+    name: "Parking Placement Design Option"
+  - id: 9
+    name: "Front Porch Design Option"
+  - id: 10
+    name: "Garage Placement Design Option"
 field_map:
   - raw_field: COMMENTS
     schema_field: overlay_name

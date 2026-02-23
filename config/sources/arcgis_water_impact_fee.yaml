@@ -1,24 +1,29 @@
-id: arcgis_water_service
+id: arcgis_water_impact_fee
 source_type: arcgis
 target_table: utility_capacity
 jurisdiction_id: austin-tx
 base_url: https://maps.austintexas.gov/arcgis/rest/services/PropertyProfile/AustinWater/MapServer
 dataset_id: ""
 license: Public Domain
-refresh_cadence: monthly
+refresh_cadence: annually
 filters:
   where: "1=1"
   outFields: "*"
 layers:
-  - id: 3
-    name: "Austin Water Service Area"
+  - id: 1
+    name: "Impact Fee Boundary 2018"
+  - id: 2
+    name: "Impact Fee Zones Pre-2014"
 field_map:
-  - raw_field: _layer_name
+  - raw_field: TITLE
     schema_field: facility_name
     type: text
   - raw_field: _layer_name
     schema_field: metric_name
     type: text
+  - raw_field: ACRES
+    schema_field: metric_value
+    type: float
   - raw_field: _geometry_wkt
     schema_field: geometry_wkt
     type: text

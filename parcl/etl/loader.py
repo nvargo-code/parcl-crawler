@@ -52,7 +52,21 @@ TABLE_COLUMNS: dict[str, list[str]] = {
     "rights_restrictions": [
         "id", "source_id", "external_id", "restriction_type", "parcel_id",
         "address", "address_norm", "grantor", "grantee", "recorded_date",
-        "description", "jurisdiction_id", "raw_payload",
+        "description", "geometry_wkt", "jurisdiction_id", "raw_payload",
+    ],
+    "property_valuations": [
+        "id", "source_id", "external_id", "prop_id", "geo_id",
+        "address", "address_norm", "city", "zip_code", "subdivision",
+        "entities", "acreage", "legal_description",
+        "appraised_value", "land_value", "improvement_value",
+        "tax_year", "geometry_wkt", "jurisdiction_id", "raw_payload",
+    ],
+    "transit_amenities": [
+        "id", "source_id", "external_id", "amenity_type", "name",
+        "description", "address", "address_norm",
+        "stop_id", "route_id", "route_type", "park_type", "acreage",
+        "latitude", "longitude", "geometry_wkt", "properties",
+        "jurisdiction_id", "raw_payload",
     ],
 }
 

@@ -1,30 +1,24 @@
-id: arcgis_zoning_overlays
+id: arcgis_zoning_tod
 source_type: arcgis
 target_table: zoning_overlays
 jurisdiction_id: austin-tx
 base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Zoning_2/MapServer
 dataset_id: ""
 license: Public Domain
-refresh_cadence: weekly
+refresh_cadence: monthly
 filters:
   where: "1=1"
-  outFields: "*"
+  outFields: "STATION_NAME,STATION_TYPE,TOD_SUB_DISTRICT"
 layers:
-  - id: 0
-    name: "Airport Overlay"
-  - id: 14
-    name: "ETOD Overlay"
-  - id: 20
-    name: "Neighborhood Planning Areas"
-  - id: 29
-    name: "Waterfront Overlay"
-  - id: 31
-    name: "Wildland Urban Interface"
+  - id: 26
+    name: "Transit Oriented Development"
 field_map:
-  - raw_field: ZONING_OVERLAY_SUB_NAME
+  - raw_field: STATION_NAME
+    template: "{STATION_NAME} - {TOD_SUB_DISTRICT}"
     schema_field: overlay_name
     type: text
-  - raw_field: _layer_name
+    required: true
+  - raw_field: STATION_TYPE
     schema_field: overlay_type
     type: text
   - raw_field: _layer_name

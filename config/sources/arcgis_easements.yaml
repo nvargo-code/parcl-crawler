@@ -1,0 +1,35 @@
+id: arcgis_easements
+source_type: arcgis
+target_table: rights_restrictions
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Property/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+external_id_template: "{OBJECTID}"
+filters:
+  where: "1=1"
+  outFields: "OBJECTID,EASEMENT_TYPE,EASEMENT_USE,EASEMENT_STATUS,FILE_NUMBER,DOCUMENT_TYPE,DOCUMENT_ID,CASE_NUMBER"
+layers:
+  - id: 4
+    name: "Easement Polygons"
+field_map:
+  - raw_field: EASEMENT_TYPE
+    schema_field: restriction_type
+    type: text
+    required: true
+  - raw_field: EASEMENT_USE
+    schema_field: description
+    type: text
+  - raw_field: DOCUMENT_TYPE
+    schema_field: grantor
+    type: text
+  - raw_field: DOCUMENT_ID
+    schema_field: grantee
+    type: text
+  - raw_field: CASE_NUMBER
+    schema_field: parcel_id
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

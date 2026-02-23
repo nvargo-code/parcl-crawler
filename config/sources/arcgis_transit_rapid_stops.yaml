@@ -1,0 +1,25 @@
+id: arcgis_transit_rapid_stops
+source_type: arcgis
+target_table: transit_amenities
+jurisdiction_id: austin-tx
+base_url: https://maps.austintexas.gov/arcgis/rest/services/Shared/Transportation_1/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: weekly
+filters:
+  where: "1=1"
+  outFields: "STOPABBR,STOPNAME"
+layers:
+  - id: 1
+    name: "Capital Metro Rapid Bus Stops"
+field_map:
+  - raw_field: STOPABBR
+    schema_field: stop_id
+    type: text
+    required: true
+  - raw_field: STOPNAME
+    schema_field: name
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text
