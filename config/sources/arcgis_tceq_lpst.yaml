@@ -1,0 +1,32 @@
+id: arcgis_tceq_lpst
+source_type: arcgis
+target_table: environmental_constraints
+jurisdiction_id: us-tx-travis
+base_url: https://www.gis.hctx.net/arcgishcpid/rest/services/Environmental/TCEQ_Pollution/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: quarterly
+external_id_template: "{LPST_ID}"
+filters:
+  where: "COUNTY = 'TRAVIS'"
+  outFields: "LPST_ID,SITE_NAME,PHYS_ADDR,CITY,ZIP_CODE,LAT_DD,LONG_DD"
+layers:
+  - id: 4
+    name: "Leaking Petroleum Storage Tanks"
+field_map:
+  - raw_field: LPST_ID
+    schema_field: name
+    type: text
+    required: true
+  - raw_field: SITE_NAME
+    schema_field: description
+    type: text
+  - raw_field: PHYS_ADDR
+    schema_field: address
+    type: text
+  - raw_field: LAT_DD
+    schema_field: latitude
+    type: float
+  - raw_field: LONG_DD
+    schema_field: longitude
+    type: float
