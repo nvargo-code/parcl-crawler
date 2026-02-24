@@ -1,0 +1,29 @@
+id: arcgis_austin_energy_service
+source_type: arcgis
+target_table: utility_capacity
+jurisdiction_id: austin-tx
+base_url: https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/UTILITIESCOMMUNICATION_austin_energy_service_area/FeatureServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: annually
+external_id_template: "{AUSTIN_ENERGY_SERVICE_AREA_ID}"
+filters:
+  where: "1=1"
+  outFields: "AUSTIN_ENERGY_SERVICE_AREA_ID,SERVICE_AREA,Shape__Area"
+layers:
+  - id: 0
+    name: "Austin Energy Service Area"
+field_map:
+  - raw_field: AUSTIN_ENERGY_SERVICE_AREA_ID
+    schema_field: facility_name
+    type: text
+    required: true
+  - raw_field: SERVICE_AREA
+    schema_field: metric_name
+    type: text
+  - raw_field: Shape__Area
+    schema_field: metric_value
+    type: float
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text
