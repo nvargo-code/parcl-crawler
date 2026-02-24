@@ -1,0 +1,33 @@
+id: arcgis_austin_school_zones
+source_type: arcgis
+target_table: transit_amenities
+jurisdiction_id: austin-tx
+base_url: https://server.metrostudygis.com/arcgis/rest/services/Austin_SZF_MIL1/MapServer
+dataset_id: ""
+license: Public Domain
+refresh_cadence: annually
+external_id_template: "{CAMPUS_ID}"
+filters:
+  where: "1=1"
+  outFields: "CAMPUS,CAMPUS_ID,ISD"
+layers:
+  - id: 2
+    name: "Middle School Attendance Zones"
+  - id: 3
+    name: "High School Attendance Zones"
+  - id: 4
+    name: "Elementary School Attendance Zones"
+field_map:
+  - raw_field: CAMPUS
+    schema_field: name
+    type: text
+    required: true
+  - raw_field: CAMPUS_ID
+    schema_field: stop_id
+    type: text
+  - raw_field: _layer_name
+    schema_field: route_type
+    type: text
+  - raw_field: _geometry_wkt
+    schema_field: geometry_wkt
+    type: text

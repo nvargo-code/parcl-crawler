@@ -56,6 +56,7 @@ class ArcGISSource(BaseSource):
 
         offset = 0
         limit = self.crawler.page_size
+        use_pagination = True
 
         for page_num in range(self.crawler.max_pages):
             params = {
@@ -63,9 +64,10 @@ class ArcGISSource(BaseSource):
                 "outFields": self.config.filters.get("outFields", "*"),
                 "returnGeometry": "true",
                 "f": "json",
-                "resultOffset": offset,
-                "resultRecordCount": limit,
             }
+            if use_pagination:
+                params["resultOffset"] = offset
+                params["resultRecordCount"] = limit
 
             self.log.info(
                 f"Layer {layer_name} ({layer_id}): page {page_num + 1}, offset={offset}"
@@ -75,6 +77,20 @@ class ArcGISSource(BaseSource):
             )
             resp.raise_for_status()
             data = resp.json()
+
+            # Handle ArcGIS error body (HTTP 200 with {"error": {...}})
+            if "error" in data:
+                err_msg = data["error"].get("message", "")
+                if use_pagination and "pagination" in err_msg.lower():
+                    self.log.info(
+                        f"Layer {layer_name} ({layer_id}): pagination not supported, retrying without offset"
+                    )
+                    use_pagination = False
+                    continue
+                self.log.warning(
+                    f"Layer {layer_name} ({layer_id}): ArcGIS error: {err_msg}"
+                )
+                break
 
             features = data.get("features", [])
             if not features:
@@ -91,6 +107,10 @@ class ArcGISSource(BaseSource):
 
             yield records
             offset += limit
+
+            # Non-paginated layers are always single-shot
+            if not use_pagination:
+                break
 
             # Check if server says there's more
             if not data.get("exceededTransferLimit", False) and len(features) < limit:
